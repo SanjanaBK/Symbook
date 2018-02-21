@@ -1,6 +1,21 @@
 sample pojo
 verified : 1 for true and 0 for false not yet implemented
 
-sBook
-type: 0 paperback 1 hardback 2 edition
-status: 0 ready to share 1 shared 2 ready to borrow 3 borrowed 4 returned 
+Book
+type: 0 paperback 1 hardback 2 kindle
+status: 0 ready to share 1 shared
+
+Book_Users
+type: similar to Book
+status:1 borrowed 2 returned
+To do - 
+Search style separate file
+Style make different file
+Add log out button
+Add delete book servlet
+Add Edit profile/book servlet
+Add borrow servlet
+add return servlet
+
+
+

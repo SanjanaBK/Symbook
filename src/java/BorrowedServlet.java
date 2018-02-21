@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import manager.BookManager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -13,13 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import pojo.Book;
+import manager.BookUserManager;
+import pojo.Book_Users;
 
 /**
  *
  * @author hp
  */
-public class BookServlet extends HttpServlet {
+public class BorrowedServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +33,27 @@ public class BookServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userid = request.getParameter("user");
-        String type = request.getParameter("type");
-        BookManager manager = new BookManager();
-        List<Book> books = manager.getBooks(userid,Integer.parseInt(type));
+        int status = Integer.parseInt(request.getParameter("status"));
+        BookUserManager manager = new BookUserManager();
+        List<Book_Users> books;
+        if( status==0)
+            books = manager.getBooksList(userid);
+        else
+            books = manager.getBooksList(userid,status);
+                
         HttpSession session = request.getSession();
         if(books!=null)
         if(!books.isEmpty()){
-            session.setAttribute("books"+type,books);
+            if(status==0)
+                session.setAttribute("booksShared",books);
+            else
+                if(status==1)
+                    session.setAttribute("books2",books);
+                else
+                    session.setAttribute("booksReturned",books);
         }
-        session.setAttribute("userid",userid);
+        //session.setAttribute("userid",userid);
         response.sendRedirect("MainPage.jsp");
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

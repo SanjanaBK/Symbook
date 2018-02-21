@@ -12,6 +12,18 @@
         <servlet-name>BookServlet</servlet-name>
         <servlet-class>BookServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShareServlet</servlet-name>
+        <servlet-class>ShareServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>SearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrowedServlet</servlet-name>
+        <servlet-class>BorrowedServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -23,6 +35,18 @@
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/BookServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShareServlet</servlet-name>
+        <url-pattern>/ShareServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/SearchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowedServlet</servlet-name>
+        <url-pattern>/BorrowedServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

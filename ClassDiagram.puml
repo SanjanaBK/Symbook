@@ -1,0 +1,101 @@
+@startuml
+annotation java.lang.Override
+annotation javax.persistence.Column
+annotation javax.persistence.Entity
+annotation javax.persistence.Id
+annotation javax.persistence.Lob
+annotation javax.persistence.Table
+class BookServlet
+class LoginServlet
+class Register.RegisterServlet
+class java.io.IOException
+class java.io.PrintWriter
+class java.sql.Date
+class java.text.SimpleDateFormat
+class java.util.Date
+class java.util.List
+class javax.persistence.GeneratedValue
+class javax.persistence.IdClass
+class javax.servlet.ServletException
+class javax.servlet.http.HttpServlet
+class javax.servlet.http.HttpServletRequest
+class javax.servlet.http.HttpServletResponse
+class javax.servlet.http.HttpSession
+class manager.BookManager
+class manager.UserManager
+class org.hibernate.Session
+class org.hibernate.SessionFactory
+class org.hibernate.Transaction
+class org.hibernate.annotations.GenericGenerator
+class org.hibernate.cfg.AnnotationConfiguration
+class org.hibernate.criterion.Restrictions
+class pojo.Book
+class pojo.BookId
+class pojo.sample
+class symbook.HibernateUtil
+interface java.io.Serializable
+BookServlet ..> java.lang.Override
+BookServlet ..> java.io.IOException
+BookServlet ..> java.io.PrintWriter
+BookServlet ..> java.util.List
+BookServlet ..> javax.servlet.ServletException
+BookServlet --|> javax.servlet.http.HttpServlet
+BookServlet ..> javax.servlet.http.HttpServletRequest
+BookServlet ..> javax.servlet.http.HttpServletResponse
+BookServlet ..> javax.servlet.http.HttpSession
+BookServlet ..> manager.BookManager
+BookServlet ..> pojo.Book
+LoginServlet ..> java.lang.Override
+LoginServlet ..> java.io.IOException
+LoginServlet ..> java.io.PrintWriter
+LoginServlet ..> javax.servlet.ServletException
+LoginServlet --|> javax.servlet.http.HttpServlet
+LoginServlet ..> javax.servlet.http.HttpServletRequest
+LoginServlet ..> javax.servlet.http.HttpServletResponse
+LoginServlet ..> javax.servlet.http.HttpSession
+LoginServlet ..> manager.UserManager
+LoginServlet ..> pojo.sample
+Register.RegisterServlet ..> java.lang.Override
+Register.RegisterServlet ..> java.io.IOException
+Register.RegisterServlet ..> java.io.PrintWriter
+Register.RegisterServlet ..> java.text.SimpleDateFormat
+Register.RegisterServlet ..> java.util.Date
+Register.RegisterServlet ..> javax.servlet.ServletException
+Register.RegisterServlet --|> javax.servlet.http.HttpServlet
+Register.RegisterServlet ..> javax.servlet.http.HttpServletRequest
+Register.RegisterServlet ..> javax.servlet.http.HttpServletResponse
+Register.RegisterServlet ..> javax.servlet.http.HttpSession
+Register.RegisterServlet ..> manager.UserManager
+Register.RegisterServlet ..> pojo.sample
+manager.BookManager ..> java.util.List
+manager.BookManager ..> org.hibernate.Session
+manager.BookManager ..> org.hibernate.SessionFactory
+manager.BookManager ..> org.hibernate.criterion.Restrictions
+manager.BookManager ..> pojo.Book
+manager.BookManager ..> pojo.sample
+manager.BookManager ..> symbook.HibernateUtil
+manager.UserManager ..> java.util.List
+manager.UserManager ..> org.hibernate.Session
+manager.UserManager ..> org.hibernate.SessionFactory
+manager.UserManager ..> org.hibernate.Transaction
+manager.UserManager ..> org.hibernate.criterion.Restrictions
+manager.UserManager ..> pojo.sample
+manager.UserManager ..> symbook.HibernateUtil
+pojo.Book ..> javax.persistence.Column
+pojo.Book ..> javax.persistence.Entity
+pojo.Book ..> javax.persistence.Id
+pojo.Book ..> javax.persistence.Lob
+pojo.Book ..> javax.persistence.Table
+pojo.Book ..> javax.persistence.IdClass
+pojo.Book --|> java.io.Serializable
+pojo.sample ..> javax.persistence.Column
+pojo.sample ..> javax.persistence.Entity
+pojo.sample ..> javax.persistence.Id
+pojo.sample ..> javax.persistence.Table
+pojo.sample ..> java.sql.Date
+pojo.sample ..> javax.persistence.GeneratedValue
+pojo.sample ..> org.hibernate.annotations.GenericGenerator
+pojo.sample --|> java.io.Serializable
+symbook.HibernateUtil ..> org.hibernate.SessionFactory
+symbook.HibernateUtil ..> org.hibernate.cfg.AnnotationConfiguration
+@enduml

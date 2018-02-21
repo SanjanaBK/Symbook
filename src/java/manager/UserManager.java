@@ -19,6 +19,27 @@ import symbook.HibernateUtil;
  * @author hp
  */
 public class UserManager {
+    public boolean checkUserExists(String username){
+        SessionFactory sf= HibernateUtil.getSessionFactory();
+        Session session;
+        try{
+            System.out.println("");
+            session = sf.openSession();
+            List<sample> list = session.createCriteria(sample.class).add(Restrictions.eq("userid",username)).list();
+            if(list.isEmpty())
+                return false;
+            return true;
+         
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return false;
+        }
+        finally {
+            sf.getCurrentSession().close();
+            
+        }
+    }
     public boolean checkUserExists(String email,String username){
         boolean res1,res2;
         SessionFactory sf= HibernateUtil.getSessionFactory();
@@ -95,7 +116,6 @@ public class UserManager {
         }
     }
 
-   
     public sample getUser(String email, String password) {
        boolean res;       
         Session session = HibernateUtil.getSessionFactory().openSession();
