@@ -9,11 +9,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>BookShare - Upload Books</title>
+        <title>BookShare - Logout</title>
     </head>
     <body>
-        <div class=""
-        <h1>Hey, {user.name}! Ready to share?</h1>
-        <form 
+        <%
+        request.getSession().removeAttribute("userid");    
+        request.getSession().invalidate();
+        response.sendRedirect("login.jsp");
+        
+        %>
     </body>
 </html>

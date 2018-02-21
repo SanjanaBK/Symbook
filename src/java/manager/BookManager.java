@@ -1,6 +1,7 @@
 package manager;
 
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -76,6 +77,50 @@ public class BookManager {
     
    finally {
             session.close();
+        }
+    }
+    
+    public boolean deleteBook(String book,String user){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+    try{
+    session.beginTransaction();
+    String query = "delete from Book where name= :book  and user= :user";
+    Query q = session.createQuery(query);
+    q.setParameter("book", book);
+    q.setParameter("user",user);
+    System.out.println(q.executeUpdate());
+    session.getTransaction().commit();
+    return true;
+    }
+    catch(Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+        }
+    
+   finally {
+            session.close();
+        }
+    
+    }
+    
+    public Book getBook(String book,String user){
+         Book list;
+        SessionFactory sf= HibernateUtil.getSessionFactory();
+        Session session;
+        try{
+            System.out.println("");
+            session = sf.openSession();
+            list = (Book)session.createCriteria(Book.class).add(Restrictions.and(Restrictions.eq("user",user),Restrictions.eq("book",book))).uniqueResult();
+            return list;
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        finally {
+            sf.getCurrentSession().close();
+           
         }
     }
 }

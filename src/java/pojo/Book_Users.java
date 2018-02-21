@@ -11,6 +11,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -31,8 +33,10 @@ public class Book_Users implements Serializable{
     @Column(name="borrowerid",nullable=false)
     private String borrower;
     
+    @Temporal(TemporalType.DATE)
     @Column(name="date",nullable=false)
     private Date date;
+    @Temporal(TemporalType.DATE)
     @Column(name="Rdate")
     private Date rdate;
 

@@ -11,11 +11,13 @@ status:1 borrowed 2 returned
 To do - 
 Search style separate file
 Style make different file
-Add log out button
-Add delete book servlet
+done Add log out button
+done Add delete book servlet
 Add Edit profile/book servlet
-Add borrow servlet
+testing required Add borrow servlet
 add return servlet
+done Add logout jsp? 
+
 
 
 

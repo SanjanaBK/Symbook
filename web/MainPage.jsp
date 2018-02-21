@@ -12,8 +12,15 @@
 <html lang="en">
 <head>
   <title>Main</title>
+  
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%
+      response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
+  %>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -163,9 +170,19 @@
   
 </head>
 <body>
+  <%
+      String user = (String) session.getAttribute("userid");
+      if(null==user)
+        response.sendRedirect("login.jsp");
+  %>  
   <div class="jumbotron jumbotron-fluid">
   <div class="container">
-      <h3>Hey  ${user.name} ! </h3>  
+      <h3>Hey  ${user.name} ! </h3> 
+      <div id="Logout" style="float: right">
+          <a href="Logout.jsp" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-log-out"></span> Log out
+        </a>
+      </div>
     <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#Share">Share</a></li>
     <li><a data-toggle="tab" href="#Borrow">Borrow</a></li>
@@ -287,8 +304,8 @@
                                 
                                 <div class="col-xs-12 col-md-6">
                                     <form action="DeleteServlet" method="post" onsubmit="return conf(this,'Delete')">
-                                        <input type="hidden" name="${bookL.name}"/>
-                                        <input type="hidden" name="${user.userid}"/>
+                                        <input type="hidden" name="book" value="${bookL.name}"/>
+                                        <input type="hidden" name="user"value="${user.userid}"/>
                                         <input class="btn btn-info btn-lg" type="submit" value="Delete"/>
                                     </form>
                                 </div>
@@ -331,8 +348,9 @@
                             <div class="row">
                                 <div class="col-xs-12 col-md-6">
                                     <form action="BorrowBookServlet" method="post" onsubmit="return conf(this,'borrow')">
-                                        <input type="hidden" name="${bookR.name}"/>
-                                        <input type="hidden" name="${user.userid}"/>
+                                        <input type="hidden" name="book" value="${bookR.name}"/>
+                                        <input type="hidden" name="borrower" value="${user.userid}"/>
+                                        <input type="hidden" name="lender" value="${bookR.user}"/>
                                         <input class="btn btn-info btn-lg" type="submit" value="Borrow"/>
                                     </form>
                                 </div>

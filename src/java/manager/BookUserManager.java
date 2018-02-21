@@ -42,7 +42,6 @@ public boolean checkBookExists(String book,String user){
     
 }
 
-
 public boolean AddBook(Book_Users book){
 Session session = HibernateUtil.getSessionFactory().openSession();
     try{

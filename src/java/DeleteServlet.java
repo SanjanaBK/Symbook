@@ -6,20 +6,18 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import manager.BookManager;
-import pojo.Book;
 
 /**
  *
  * @author hp
  */
-public class SearchServlet extends HttpServlet {
+public class DeleteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,20 +30,19 @@ public class SearchServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String book = request.getParameter("search").toLowerCase();
-        String userid = request.getParameter("user");
-         BookManager manager = new BookManager();
-        List<Book> books = manager.getBooks(userid,book);
-        HttpSession session = request.getSession();
-        if(books!=null)
-        if(!books.isEmpty()){
-            request.setAttribute("retrievedBooks",books);
-        }
-        //session.setAttribute("userid",userid);
-        request.getRequestDispatcher("MainPage.jsp").forward(request, response);
-        
+            String name = request.getParameter("user");
+            String book = request.getParameter("book");
+            BookManager manager = new BookManager();
+            HttpSession session = request.getSession();
+            if(manager.deleteBook(book,name)){
+                session.setAttribute("message","Successfully deleted");
+                session.setAttribute("userid",name);
+            }
+            else{
+                session.setAttribute("message","Sorry! We could not remove your book due to internal error.Try again later?");
+            }
+            response.sendRedirect("MainPage.jsp");
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

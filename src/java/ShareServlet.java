@@ -36,7 +36,7 @@ public class ShareServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userid = request.getParameter("username");
-        String bookname = request.getParameter("bookname");
+        String bookname = request.getParameter("bookname").toLowerCase();
         String author = request.getParameter("author");
         String genre = request.getParameter("genre");
         int type = Integer.parseInt(request.getParameter("type"));
